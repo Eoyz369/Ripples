@@ -1,0 +1,52 @@
+/* 修改导航栏样式 */
+.site-navigation {
+    background-color: #333; /* 修改导航栏背景颜色 */
+    padding: 10px 0; /* 增加上下内边距 */
+}
+
+.menu {
+    list-style: none; /* 去除列表样式 */
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    display: inline-block; /* 横向排列菜单项 */
+    margin-right: 20px; /* 调整菜单项间距 */
+}
+
+.menu li a {
+    color: #fff; /* 修改菜单链接颜色 */
+    text-decoration: none; /* 去除链接下划线 */
+    padding: 5px 10px; /* 调整菜单链接内边距 */
+    transition: color 0.3s ease; /* 添加颜色过渡效果 */
+}
+
+.menu li a:hover {
+    color: #ff9900; /* 鼠标悬停时修改链接颜色 */
+}
+
+/* 修改搜索栏样式 */
+.search-bar {
+    margin-top: 10px; /* 调整搜索栏与导航栏的间距 */
+}
+
+.search-input {
+    padding: 8px; /* 调整搜索框内边距 */
+    border: 1px solid #ccc; /* 添加边框 */
+    border-radius: 5px; /* 圆角边框 */
+}
+
+.search-button {
+    padding: 8px 15px; /* 调整搜索按钮内边距 */
+    background-color: #ff9900; /* 修改搜索按钮背景颜色 */
+    color: #fff; /* 修改搜索按钮文字颜色 */
+    border: none; /* 去除按钮边框 */
+    border-radius: 5px; /* 圆角按钮 */
+    cursor: pointer; /* 添加指针样式 */
+    transition: background-color 0.3s ease; /* 添加背景颜色过渡效果 */
+}
+
+.search-button:hover {
+    background-color: #e68a00; /* 鼠标悬停时修改按钮背景颜色 */
+}

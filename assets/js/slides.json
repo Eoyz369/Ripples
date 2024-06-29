@@ -1,0 +1,12 @@
+[
+    {
+        "image": "path/to/your/image1.jpg",
+        "title": "Slide 1",
+        "description": "This is the first slide description"
+    },
+    {
+        "image": "path/to/your/image2.jpg",
+        "title": "Slide 2",
+        "description": "This is the second slide description"
+    }
+]

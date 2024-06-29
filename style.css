@@ -1,0 +1,36 @@
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hover-effect:hover {
+            transform: translateY(-10px);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        @media (max-width: 640px) {
+            .gallery img {
+                min-height: 200px;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .gallery img {
+                min-height: 300px;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .gallery img {
+                min-height: 400px;
+            }
+        }

@@ -1,94 +1,114 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+<?php
+/*
+ * @Author: Eoyz369
+ * @Date: 2024-06-29 21:34:09
+ * @LastEditTime: 2024-07-01 23:56:42
+ * @FilePath: \MHWeb\comments.php
+ */
+function threadedComments($comments, $options)
+{
+    $commentClass = $comments->authorId ? ($comments->authorId == $comments->ownerId ? ' comment-by-author' : ' comment-by-user') : '';
+    $commentLevelClass = $comments->levels > 0 ? ' comment-child' : ' comment-parent';
 
-<?php define('__TYPECHO_DEBUG__', true); ?>
-<div id="comments" class="max-w-2xl mx-auto my-8 p-6 bg-white rounded-lg shadow-md">
-    <?php $this->comments()->to($comments); ?>
-    
-    <?php if ($comments->have()): ?>
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">
-            <?php $this->commentsNum(_t('暂无评论'), _t('1 条评论'), _t('%d 条评论')); ?>
-        </h2>
-        
-        <div class="space-y-6" id="comment-list">
-            <?php while($comments->next()): ?>
-                <div id="<?php $comments->theId(); ?>" class="border-b border-gray-200 pb-4 mb-4">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-4">
-                            <img class="w-10 h-10 rounded-full" src="<?php echo $comments->gravatar(48); ?>" alt="<?php $comments->author(); ?>" />
-                            <div>
-                                <h3 class="text-md font-semibold text-gray-900"><?php $comments->author(); ?></h3>
-                                <p class="text-sm text-gray-500"><?php $comments->date('Y-m-d H:i'); ?></p>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="<?php $comments->replyUrl(); ?>" class="text-sm text-blue-500 hover:underline">回复</a>
-                        </div>
-                    </div>
-                    <p class="mt-2 text-gray-700"><?php $comments->content(); ?></p>
+    // 随机选择一个样式类
+    $styles = ['chat-bubble-primary', 'chat-bubble-secondary', 'chat-bubble-accent', 'chat-bubble-info', 'chat-bubble-success', 'chat-bubble-warning', 'chat-bubble-error'];
+    $randomStyle = $styles[array_rand($styles)];
+    ?>
+
+    <li id="<?php $comments->theId(); ?>" class="comment-body<?php echo $commentLevelClass; ?><?php $comments->alt(' comment-odd', ' comment-even'); echo $commentClass; ?>">
+        <div id="<?php echo str_replace('comment-', '', $comments->theId()); ?>" class="chat <?php echo $comments->parent ? 'chat-end' : 'chat-start'; ?>">
+            <div class="chat-image avatar">
+                <div class="w-10 rounded-full">
+                    <?php $comments->gravatar('40', ''); ?>
                 </div>
-            <?php endwhile; ?>
-        </div>
-
-        <div class="mt-6">
-            <?php $comments->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>
-        </div>
-    <?php endif; ?>
-
-    <?php if($this->allow('comment')): ?>
-        <div class="mt-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">发表评论</h2>
-            <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" class="space-y-4">
-                <?php if($this->user->hasLogin()): ?>
-                    <p class="text-gray-700">已登录为 <a href="<?php $this->options->profileUrl(); ?>" class="text-blue-500 hover:underline"><?php $this->user->screenName(); ?></a>. <a href="<?php $this->options->logoutUrl(); ?>" class="text-blue-500 hover:underline" title="Logout"><?php _e('退出'); ?> &raquo;</a></p>
-                <?php else: ?>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="author" class="block text-sm font-medium text-gray-700">姓名</label>
-                            <input type="text" name="author" id="author" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required />
-                        </div>
-                        <div>
-                            <label for="mail" class="block text-sm font-medium text-gray-700">邮箱</label>
-                            <input type="email" name="mail" id="mail" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required />
-                        </div>
-                        <div>
-                            <label for="url" class="block text-sm font-medium text-gray-700">网站</label>
-                            <input type="url" name="url" id="url" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
-                        </div>
-                    </div>
+            </div>
+            <div class="chat-header">
+                <?php echo $comments->author; ?>
+                <?php if ($comments->parent) : ?>
+                    <span class="reply-to text-sm text-gray-500">
+                        <a href="#comment-<?php echo $comments->parent; ?>" class="hover:underline" onclick="return TypechoComment.reply('<?php echo $comments->theId(); ?>', <?php echo $comments->theId(); ?>);">回复 <?php echo str_replace('comment-', '', $comments->parent); ?> 楼</a>
+                    </span>
                 <?php endif; ?>
-                <div>
-                    <label for="textarea" class="block text-sm font-medium text-gray-700">评论</label>
-                    <textarea name="text" id="textarea" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required></textarea>
-                </div>
-                <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    提交评论
-                </button>
-            </form>
+            </div>
+            <div class="chat-bubble font-bold flex items-center justify-center <?php echo $randomStyle; ?>">
+                <?php $comments->content(); ?>
+            </div>
+            <div class="chat-footer text-xs text-gray-500 flex justify-between items-center">
+                <span class="comment-level text-xs text-gray-500"><?php echo $comments->theId(); ?> 楼 </span>
+                <time><?php $comments->date('Y-m-d H:i'); ?></time>
+                <a href="<?php echo $comments->replyUrl(); ?>?replyTo=<?php echo $comments->theId(); ?>" class="text-blue-500 hover:underline"><?php $comments->reply(); ?></a>
+            </div>
         </div>
-    <?php else: ?>
-        <h3 class="text-lg font-bold text-gray-800">评论已关闭</h3>
-    <?php endif; ?>
-</div>
+        <?php if ($comments->children) : ?>
+            <?php $comments->threadedComments($options); ?>
+        <?php endif; ?>
+    </li>
 
-<script>
-$(document).ready(function() {
-    $('#comment-form').submit(function(event) {
-        event.preventDefault(); // 防止表单默认提交
-        $.ajax({
-            url: $(this).attr('action'),
-            type: 'post',
-            data: $(this).serialize(),
-            success: function(response) {
-                // 成功提交评论后的处理
-                alert('评论提交成功！');
-                $('#comment-list').prepend($(response).find('#comment-list').html());
-                $('#comment-form')[0].reset();
-            },
-            error: function(xhr, status, error) {
-                // 提交失败后的处理
-                alert('评论提交失败：' + error);
-            }
-        });
-    });
-});
-</script>
+    <?php
+}
+
+$this->comments()->to($comments);
+?>
+
+<?php if ($this->allow('comment')) : ?>
+    <?php if ($comments->have()) : ?>
+        <div id="comments" class="max-w-4xl mx-auto my-8 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                <?php $this->commentsNum(_t('暂无评论'), _t('仅有一条评论'), _t('%d 条评论')); ?>
+            </h2>
+            <div class="space-y-6" id="comment-list">
+                <ul class="comment-list">
+                    <?php $comments->listComments(array('before' => '', 'after' => '', 'avatarSize' => 40, 'dateFormat' => 'Y-m-d H:i', 'replyWord' => '回复')); ?>
+                </ul>
+            </div>
+        </div>
+    <?php else : ?>
+        <div id="comments" class="max-w-4xl mx-auto my-8 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                <?php _e('暂无评论'); ?>
+            </h2>
+        </div>
+    <?php endif; ?>
+
+    <div id="<?php $this->respondId(); ?>" class="respond max-w-4xl mx-auto my-8 p-6 bg-white rounded-lg shadow-md">
+        <div class="flex justify-between items-center mb-4">
+            <h3 id="response" class="text-2xl font-bold text-gray-800">
+                <?php _e('添加新评论'); ?>
+            </h3>
+            <div class="cancel-comment-reply">
+                <?php $comments->cancelReply(); ?>
+            </div>
+        </div>
+        <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form" role="form" class="space-y-4">
+            <?php if ($this->user->hasLogin()) : ?>
+                <p class="text-gray-700"><?php _e('登录身份: '); ?><a class="text-blue-500" href="<?php $this->options->profileUrl(); ?>"><?php $this->user->screenName(); ?></a>. <a href="<?php $this->options->logoutUrl(); ?>" title="Logout" class="text-red-500"><?php _e('退出'); ?> &raquo;</a>
+                </p>
+            <?php else : ?>
+                <p>
+                    <label for="author" class="block text-sm font-medium text-gray-700 required"><?php _e('称呼'); ?></label>
+                    <input type="text" name="author" id="author" class="text-input mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" value="<?php $this->remember('author'); ?>" required />
+                </p>
+                <p>
+                    <label for="mail" class="block text-sm font-medium text-gray-700 <?php if ($this->options->commentsRequireMail) : ?> required<?php endif; ?>"><?php _e('Email'); ?></label>
+                    <input type="email" name="mail" id="mail" class="text-input mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" value="<?php $this->remember('mail'); ?>" <?php if ($this->options->commentsRequireMail) : ?> required<?php endif; ?> />
+                </p>
+                <p>
+                    <label for="url" class="block text-sm font-medium text-gray-700 <?php if ($this->options->commentsRequireURL) : ?> required<?php endif; ?>"><?php _e('网站'); ?></label>
+                    <input type="url" name="url" id="url" class="text-input mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" placeholder="<?php _e('http://'); ?>" value="<?php $this->remember('url'); ?>" <?php if ($this->options->commentsRequireURL) : ?> required<?php endif; ?> />
+                </p>
+            <?php endif; ?>
+            <p>
+                <label for="textarea" class="block text-sm font-medium text-gray-700 required"><?php _e('内容'); ?></label>
+                <textarea rows="8" cols="50" name="text" id="textarea" class="textarea mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" required><?php $this->remember('text'); ?></textarea>
+            </p>
+            <div class="flex justify-between items-center">
+                <button type="submit" class="submit inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-semibold text-white uppercase tracking-widest hover:bg-blue-400 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 active:bg-blue-600 disabled:opacity-25 transition"><?php _e('提交评论'); ?></button>
+                <div class="cancel-comment-reply">
+                    <?php $comments->cancelReply(); ?>
+                </div>
+            </div>
+        </form>
+    </div>
+<?php else : ?>
+
+<?php endif; ?>

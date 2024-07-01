@@ -1,10 +1,11 @@
 <?php
 /*
  * @Author: Eoyz369
- * @Date: 2024-06-29 21:34:09
- * @LastEditTime: 2024-07-01 23:56:42
+ * @Date: 2024-06-29 01:34:09
+ * @LastEditTime: 2024-07-01 03:58:46
  * @FilePath: \Ripples\comments.php
  */
+
 function threadedComments($comments, $options)
 {
     $commentClass = $comments->authorId ? ($comments->authorId == $comments->ownerId ? ' comment-by-author' : ' comment-by-user') : '';
@@ -26,7 +27,7 @@ function threadedComments($comments, $options)
                 <?php echo $comments->author; ?>
                 <?php if ($comments->parent) : ?>
                     <span class="reply-to text-sm text-gray-500">
-                        <a href="#comment-<?php echo $comments->parent; ?>" class="hover:underline" onclick="return TypechoComment.reply('<?php echo $comments->theId(); ?>'， <?php echo $comments->theId(); ?>);">回复 <?php echo str_replace('comment-', '', $comments->parent); ?> 楼</a>
+                        <a href="#comment-<?php echo $comments->parent; ?>" class="hover:underline" onclick="return TypechoComment.reply('<?php echo $comments->theId(); ?>', <?php echo $comments->theId(); ?>);">回复 <?php echo str_replace('comment-', '', $comments->parent); ?> 楼</a>
                     </span>
                 <?php endif; ?>
             </div>

@@ -3,7 +3,7 @@
 /*
  * @Author: Eoyz369
  * @Date: 2024-06-29 01:34:09
- * @LastEditTime: 2024-07-02 01:19:22
+ * @LastEditTime: 2024-07-02 01:52:26
  * @FilePath: \Ripples\post.php
  */
 
@@ -16,7 +16,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) {
 
 <body class="bg-gray-100 flex flex-col min-h-screen">
 
-  <main class="flex-grow">
+  <main class="flex-grow m-3">
 
     <div class="max-w-4xl mx-auto my-8 p-6 bg-white rounded-lg shadow-md">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between">

@@ -11,7 +11,7 @@
 | `index.php`     | 首页以及说明文件                 | 50%   |
 | `404.php`       | 404页面文件                      | ❌   |
 | `archive.php`   | 通用（分类、搜索、标签、作者）页面文件 | ❌   |
-| `category.php`  | 分类页面文件                     | ❌   |
+| `category.php`  | 分类页面文件                     | 98%   |
 | `search.php`    | 搜索页面文件                     | ❌   |
 | `tag.php`       | 标签页面文件                     | ❌   |
 | `author.php`    | 作者页面文件                     | ❌   |

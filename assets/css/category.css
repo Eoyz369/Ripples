@@ -1,0 +1,13 @@
+.gradient-text {
+    background: linear-gradient(to right, #f06, #48f);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.no-line-height {
+    line-height: initial;
+}
+
+.apple-font {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}

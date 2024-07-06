@@ -10,7 +10,7 @@
 | `screenshot.png`| 主题缩略图                       | ❌   |
 | `index.php`     | 首页以及说明文件                 | 50%   |
 | `404.php`       | 404页面文件                      | ❌   |
-| `archive.php`   |归档页面  | ❌   |
+| `archive.php`   |归档页面  | Coming Soon   |
 | `category.php`  | 分类页面文件                     | 98%   |
 | `search.php`    | 搜索页面文件                     |  0%  |
 | `tag.php`       | 标签页面文件                     | 98%   |

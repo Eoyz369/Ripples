@@ -1,6 +1,6 @@
 # Ripples Coming Soon
 
-
+<img src="https://github.com/Eoyz369/Ripples/blob/main/screenshot.png" style="width: max(45%, 400px); margin: .5rem;">
 
 
 ## 主题文件框架列表

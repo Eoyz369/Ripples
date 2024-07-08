@@ -16,9 +16,9 @@
 | `footer.php`    | 底部页面文件                     | 80%   |
 | `functions.php` | 主题函数文件                     | 30%   |
 | `header.php`    | 头部页面文件                     | 70%   |
-| `page.php`      | 独立页面文件                     | ❌   |
-| `screenshot.png`| 主题缩略图                       | ❌   |
-| `404.php`       | 404页面文件                      | ❌   |
+| `page.php`      | 独立页面文件                     | Coming Soon   |
+| `screenshot.png`| 主题缩略图                       | Coming Soon   |
+| `404.php`       | 404页面文件                      | Coming Soon   |
 | `author.php`    | 作者页面文件                     | ❌   |
 | `sidebar.php`   | 侧边栏页面文件                   | ❌   |
 

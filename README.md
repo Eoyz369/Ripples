@@ -12,7 +12,7 @@
 | `category.php`  | 分类页面文件                     | 98%   |
 | `search.php`    | 搜索页面文件                     |  0%  |
 | `tag.php`       | 标签页面文件                     | 98%   |
-| `post.php`      | 日志页面文件                     |    |
+| `post.php`      | 日志页面文件                     |  80%  |
 | `footer.php`    | 底部页面文件                     | 80%   |
 | `functions.php` | 主题函数文件                     | 30%   |
 | `header.php`    | 头部页面文件                     | 70%   |

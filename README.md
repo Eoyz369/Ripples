@@ -2,6 +2,7 @@
 
 
 
+
 ## 主题文件框架列表
 
 | 文件名          | 作用                             | 进度 |
@@ -31,6 +32,9 @@
 | `card_list.php` | 卡片列表                          | 90%  |
 | `articles.php` | 文章内容显示                       | 80%  |
 | `code.php` | 代码高亮                       | 95% |
+
+## 引用组件
+[**prismjs**](https://prismjs.com/)
 
 ### 前端开发
 - [x] 编写 HTML 结构

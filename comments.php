@@ -34,7 +34,7 @@ function threadedComments($comments, $options)
             <?php if ($comments->parent) : ?>
             <span class="reply-to text-sm text-gray-500">
                 <a href="#comment-<?php echo $comments->parent; ?>" class="hover:underline"
-                    onclick="return TypechoComment.reply('<?php echo $comments->theId(); ?>', <?php echo $comments->theId(); ?>);">回复
+                    onclick="return TypechoComment.reply('<?php echo $comments->theId(); ?>'， <?php echo $comments->theId(); ?>);">回复
                     <?php echo str_replace('comment-', '', $comments->parent); ?> 楼</a>
             </span>
             <?php endif; ?>
@@ -151,15 +151,7 @@ $this->comments()->to($comments);
         </form>
     </div>
 </div>
-  <script src="<?php $this->options->themeUrl('assets/js/comments.js'); ?>">document.addEventListener('DOMContentLoaded', function() {
-    var commentLevels = document.querySelectorAll('.comment-level');
-    commentLevels.forEach(function(level) {
-        var text = level.textContent.trim(); // 获取元素内容并去除首尾空格
-        var newContent = text.replace('comment-', ''); // 去掉 comment- 前缀
-        level.textContent = newContent; // 更新元素内容
-    });
-});
-</script>
+
 
 <?php else : ?>
 

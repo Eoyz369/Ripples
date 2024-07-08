@@ -1,10 +1,9 @@
-
 <script src="<?php $this->options->themeUrl('assets/js/comments.js'); ?>"></script>
 <?php
 /*
  * @Author: Eoyz369
  * @Date: 2024-06-29 01:34:09
- * @LastEditTime: 2024-07-01 04:18:59
+ * @LastEditTime: 2024-07-08 21:18:15
  * @FilePath: \Ripples\comments.php
  */
 function threadedComments($comments, $options)

@@ -34,7 +34,7 @@
 | `code.php` | 代码高亮                       | 95% |
 
 ## 引用组件
-[**prismjs**](https://prismjs.com/)
+
 
 ### 前端开发
 - [x] 编写 HTML 结构
